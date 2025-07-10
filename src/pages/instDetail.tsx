@@ -41,6 +41,10 @@ interface FetchInstFilesProps {
     checkedList?: Array<string>
 }
 
+interface NewEventDataNode extends EventDataNode<DataNode> {
+    type: string;
+}
+
 async function fetchInstFiles(props: FetchInstFilesProps) {
     const {castor_email, operation, inst_uuid, name, content, checkedList} = props;
     try {
@@ -174,7 +178,7 @@ const InstDetail = () => {
         }
     }
 
-    const readFile = async (_keys: React.Key[], event: { node: EventDataNode<DataNode> }) => {
+    const readFile = async (_keys: React.Key[], event: { node: NewEventDataNode }) => {
         if (event.node.type === 'file') {
             fetchInstFiles({
                 castor_email: userInfoObj.email,
