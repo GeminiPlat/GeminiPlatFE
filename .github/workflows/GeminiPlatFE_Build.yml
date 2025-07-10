@@ -3,7 +3,10 @@ name: Build and Release on Tag
 on:
   push:
     tags:
-      - 'v*' # 监听所有 v 开头的 tag，比如 v1.0.0
+      - 'v*'
+
+permissions:
+  contents: write
 
 jobs:
   build-and-release:
