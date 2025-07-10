@@ -41,10 +41,6 @@ interface FetchInstFilesProps {
     checkedList?: Array<string>
 }
 
-interface NewEventDataNode extends EventDataNode<DataNode> {
-    type: string;
-}
-
 async function fetchInstFiles(props: FetchInstFilesProps) {
     const {castor_email, operation, inst_uuid, name, content, checkedList} = props;
     try {
@@ -178,21 +174,22 @@ const InstDetail = () => {
         }
     }
 
-    const readFile = async (_keys: React.Key[], event: { node: NewEventDataNode }) => {
-        if (event.node.type === 'file') {
-            fetchInstFiles({
-                castor_email: userInfoObj.email,
-                operation: 'readFile',
-                inst_uuid: inst_detail.inst_uuid,
-                name: event.node.key as string
-            }).then((res) => {
-                if (res != undefined && res.statusCode === 200) {
-                    setSelectedFile(event.node.key as string);
-                    setSelectedFileContent((res.body as { content: string }).content);
-                }
-            })
-            // setSelectedFileContent('Test File Content.');
-        }
+    const readFile = async (_keys: React.Key[], event: { node: EventDataNode<DataNode> }) => {
+        // if (event.node.type === 'file') {
+        console.log("event.node.type" + event.node.type)
+        fetchInstFiles({
+            castor_email: userInfoObj.email,
+            operation: 'readFile',
+            inst_uuid: inst_detail.inst_uuid,
+            name: event.node.key as string
+        }).then((res) => {
+            if (res != undefined && res.statusCode === 200) {
+                setSelectedFile(event.node.key as string);
+                setSelectedFileContent((res.body as { content: string }).content);
+            }
+        })
+        // setSelectedFileContent('Test File Content.');
+        // }
     };
 
     const handleFileDownload = () => {
