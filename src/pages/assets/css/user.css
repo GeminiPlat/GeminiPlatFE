@@ -1,0 +1,17 @@
+.permsDrawer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px
+}
+
+.permsDrawerItem {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.permsDrawerItemTitle {
+    font-size: large;
+    font-weight: bold;
+}
