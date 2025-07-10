@@ -176,7 +176,6 @@ const InstDetail = () => {
 
     const readFile = async (_keys: React.Key[], event: { node: EventDataNode<DataNode> }) => {
         // if (event.node.type === 'file') {
-        console.log("event.node.type" + event.node.type)
         fetchInstFiles({
             castor_email: userInfoObj.email,
             operation: 'readFile',
